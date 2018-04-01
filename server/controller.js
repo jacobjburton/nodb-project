@@ -1,4 +1,5 @@
 //var answers = require("./answers.js");
+const axios = require('axios');
 var answers =
 [ 
     {
@@ -39,15 +40,12 @@ var answers =
     },
     {
         id: 10,
-        answer: "Super neat man."
+        answer: "Super neat, man."
     }
 ];
 
 
-let id = 0;
-
-//var useResponses = answers();
-
+let id = 1;
 
 module.exports = 
 {
@@ -89,7 +87,7 @@ module.exports =
         let index = null;
         answers.forEach((response, i) =>
         {
-            if(book.id === +req.params.id)
+            if(response.id === +req.params.id)
             {
                 index = i;
             };
@@ -112,6 +110,13 @@ module.exports =
             };
         });
         answers.splice(index, 1);
+        res.status(200).send(answers);
+    },
+    clearAll: (req, res) =>
+    {   
+        id = 1;
+        let index = null;
+        answers.length = 0;
         res.status(200).send(answers);
     }
 }

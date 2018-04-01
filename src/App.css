@@ -25,13 +25,48 @@
   font-size: 80px;
 }
 
+.Question_input
+{
+  display: flex;
+}
+
 .Answer_display
 {
   font-size: 42px;
+  justify-content: space-between;
 }
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.Answers_List
+{
+  font-size: 24px;
+}
+
+/* .Response_list_parent
+{
+  display: flex;
+} */
+
+.Response_list
+{
+  padding: 10px;
+  margin: 10px 0px;
+  justify-content: space-between;
+}
+
+.Edit_buttons
+{
+  float: left;
+}
+
+.Delete_buttons
+{
+  float: right;
+}
+
+
 

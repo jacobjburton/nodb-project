@@ -21,8 +21,9 @@ app.use(express.static(_dirname = "/../build"));
 app.get('/api/getanswers', controller.read);
 app.get('/api/response', controller.response);
 app.post('/api/getanswers', controller.create);
-app.put('/api/getanswers:id', controller.update);
-app.delete('/api/getanswers:id', controller.delete);
+app.put('/api/getanswers/:id', controller.update);
+app.delete('/api/getanswers/:id', controller.delete);
+app.delete(`/api/clearall`, controller.clearAll)
 
 app.listen(port, () =>
 {
