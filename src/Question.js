@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import DisplayQuestion from './DisplayQuestion.js';
 
 class Question extends Component
@@ -11,24 +11,24 @@ class Question extends Component
         this.state =
         {
             question: "",
-            response: '',
-            questionToDisplay: ""
+           // response: '',
+            //questionToDisplay: ""
         };
         
-        this.askClick = this.askClick.bind(this);
-        this.inputValue = this.inputValue.bind(this);
         this.askQuestion = this.askQuestion.bind(this);
+        this.inputValue = this.inputValue.bind(this);
+       // this.askQuestion = this.askQuestion.bind(this);
 
         
     }
 
-    askQuestion(text)
-    {
-        axios.get(`/api/response`).then(res =>
-        {
-            this.setState({ response: res.data });
-        });
-    }
+    // askQuestion(text)
+    // {
+    //     axios.get(`/api/response`).then(res =>
+    //     {
+    //         this.setState({ response: res.data });
+    //     });
+    // }
 
     inputValue(text)
     {
@@ -37,15 +37,11 @@ class Question extends Component
             question: text
         });
     }
-    askClick()
+    askQuestion()
     {
         
-        this.askQuestion();
-        this.setState(
-        { 
-            questionToDisplay: this.state.question,
-            question: "" 
-        });
+        this.props.askQuestionFn(this.state.question);
+        this.setState({ question: "" });
     }
    
 
@@ -60,9 +56,9 @@ class Question extends Component
                 placeholder="Ask a question!"
                 onChange={(e) => this.inputValue(e.target.value)}
             />
-            <button onClick={this.askClick}>Ask!</button>
-            <DisplayQuestion q={this.state.questionToDisplay}/>
-            <p>{this.state.response}</p>
+            <button onClick={this.askQuestion}>Ask!</button>
+            <DisplayQuestion q={this.props.displayQuestion}/>
+            <p>{this.props.response}</p>
             {/* <p>{console.log(this.state.question)}</p> */}
             <section className="Answer_display">
                 {/* {this.askQuestion()} */}

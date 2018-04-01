@@ -1,6 +1,6 @@
 //var answers = require("./answers.js");
 const axios = require('axios');
-var answers =
+var responses =
 [ 
     {
         id: 1,
@@ -51,20 +51,20 @@ module.exports =
 {
     read: (req, res) => 
     {
-        res.status(200).send(answers)
+        res.status(200).send(responses)
     },
     response: (req, res) => 
     {
         let newResponse = "";
-        let idNumber = Math.floor(Math.random()*answers.length+1);
+        let idNumber = Math.floor(Math.random()*responses.length+1);
         //console.log(idNumber);
-        for (var i = 0; i<answers.length; i++)
+        for (var i = 0; i<responses.length; i++)
         {
             // console.log(i);
-            if (+answers[i].id === +idNumber)
+            if (+responses[i].id === +idNumber)
             {
                 //console.log(i);
-                newResponse = answers[i].answer;
+                newResponse = responses[i].answer;
             };
             
         };
@@ -78,45 +78,45 @@ module.exports =
             id: id,
             answer: answer
         };
-        answers.push(response);
+        responses.push(response);
         id++;
-        res.status(200).send(answers);
+        res.status(200).send(responses);
     },
     update: (req, res) =>
     {
         let index = null;
-        answers.forEach((response, i) =>
+        responses.forEach((response, i) =>
         {
             if(response.id === +req.params.id)
             {
                 index = i;
             };
         });
-        answers[index] =
+        responses[index] =
         {
-            id: answers[index].id,
-            title: req.body.answer || answers[index].answer            
+            id: responses[index].id,
+            title: req.body.answer || responses[index].answer            
         };
-        res.status(200).send(answers);
+        res.status(200).send(responses);
     },
     delete: (req, res) =>
     {
         let index = null;
-        answers.forEach((response, i) =>
+        responses.forEach((response, i) =>
         {
             if(response.id === +req.params.id)
             {
                 index = i;
             };
         });
-        answers.splice(index, 1);
-        res.status(200).send(answers);
+        responses.splice(index, 1);
+        res.status(200).send(responses);
     },
     clearAll: (req, res) =>
     {   
         id = 1;
         let index = null;
-        answers.length = 0;
-        res.status(200).send(answers);
+        responses.length = 0;
+        res.status(200).send(responses);
     }
 }

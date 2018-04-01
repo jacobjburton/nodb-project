@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import Question from './Question.js';
-import Responses from './Responses.js';
+//import Responses from './Responses.js';
 
 class App extends Component {
   constructor(props)
@@ -13,31 +13,31 @@ class App extends Component {
     {
       // input: '',
       displayQuestion: "",
-      answers: [],
-      //response: "",
+      responses: [],
+      response: "",
       
     };
 
     this.createAnswer = this.createAnswer.bind(this);
     this.updateAnswer = this.updateAnswer.bind(this);
     this.deleteAnswer = this.deleteAnswer.bind(this);
-  
+    this.askQuestion = this.askQuestion.bind(this);
   }  
 
-  // componentDidMount()
-  // {
-  //   axios.get(`/api/getanswers}`).then(res =>
-  //   {
-  //     //console.log(res.data);
-  //     this.setState({ answers: res.data });
-  //   });
-  // }
+  componentDidMount()
+  {
+    axios.get(`/api/getanswers}`).then(res =>
+    {
+      //console.log(res.data);
+      this.setState({ responses: res.data });
+    });
+  }
 
   createAnswer(text)
   {
     axios.post(`/api/getanswers`, {text}).then(res =>
     {
-      this.setState({ answers: res.data });
+      this.setState({ response: res.data });
     });
   }
 
@@ -45,7 +45,7 @@ class App extends Component {
   {
     axios.put(`/api/getanswers?id=${id}`, {text}).then(res =>
     {
-      this.setState({ answers: res.data });
+      this.setState({ responses: res.data });
     });
   }
 
@@ -53,13 +53,21 @@ class App extends Component {
   {
     axios.delete(`/api/getanswers?id=${id}`).then(res =>
     {
-      this.setState({ answers: res.data });
+      this.setState({ responses: res.data });
     });
   }
+ 
+  askQuestion(text)
+  {
+      axios.get(`/api/response`).then(res =>
+      {
+          this.setState({ response: res.data });
+      });
+  } 
   
   render() 
   {
-    // const { answers } = this.state;
+    //const { responses } = this.state;
 
     return (
       <div className="App_parent">
@@ -69,7 +77,8 @@ class App extends Component {
         </section>
         <section className="Question_display_parent">
           <div className="Question_display">  
-            <Question />
+            <Question askQuestionFn={this.askQuestion}
+              text={this.state.response} />
             
 
           </div>
@@ -78,7 +87,7 @@ class App extends Component {
           <br/>
           <section className="Answers_display_parent">
             <div className="Answers_list">
-              <Responses />
+              {/* <Responses /> */}
             </div>
             <div className="Mod_buttons">
               

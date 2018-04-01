@@ -16,32 +16,42 @@ class Responses extends Component
 
         this.askForAnswers = this.askForAnswers.bind(this);
         this.clearAllAnswers = this.clearAllAnswers.bind(this);
+        // this.deleteAnswer = this.deleteAnswer.bind(this);
     }
-    componentDidMount()
-    {
-        axios.get(`/api/getanswers}`).then(res =>
-        {
-        //console.log(res.data);
-        this.setState({ answersToDisplay: res.data });
-        });
-    }
+    // componentDidMount()
+    // {
+    //     axios.get(`/api/getanswers}`).then(res =>
+    //     {
+    //     //console.log(res.data);
+    //     this.setState({ answersToDisplay: res.data });
+    //     });
+    // }
     
-    askForAnswers()
-    {   
-        axios.get(`/api/getanswers`).then(res =>
-        {
-       //console.log(res.data);
-        this.setState({ answersToDisplay: res.data });
-        });
-    }
+    // askForAnswers()
+    // {   
+    //     axios.get(`/api/getanswers`).then(res =>
+    //     {
+    //    //console.log(res.data);
+    //     this.setState({ answersToDisplay: res.data });
+    //     });
+    // }
 
-    clearAllAnswers()
-    {
-        axios.delete(`/api/clearall`).then(res =>
-        {
-            this.setState({ answersToDisplay: res.data });
-        });
-    }
+    // clearAllAnswers()
+    // {
+    //     axios.delete(`/api/clearall`).then(res =>
+    //     {
+    //         this.setState({ answersToDisplay: res.data });
+    //     });
+    // }
+
+    // deleteAnswer(id)
+    // {
+    //   axios.delete(`/api/getanswers?id=${id}`).then(res =>
+    //   {
+    //     this.setState({ answers: res.data });
+    //   });
+    // }
+
 
 
     render()
@@ -52,10 +62,12 @@ class Responses extends Component
                 <div className="Response_list_parent">        
                     <div key={i} className="Response_list">
                         <button 
-                            // onChange={this.props.deleteAnswer()}
                             className="Edit_buttons">Edit</button>
                         {"#" + e.id + " " + e.answer}
-                        <button className="Delete_buttons">Delete</button>
+                        <button 
+                            className="Delete_buttons"
+                            // onClick={this.deleteAnswer}
+                        >Delete</button>
                     </div>
                 </div>
             );
