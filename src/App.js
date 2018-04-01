@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import Question from './Question.js';
-//import Responses from './Responses.js';
+import Responses from './Responses.js';
+import Header from './Header.js';
+//import DisplayResponses from './DisplayResponses.js';
 
 class App extends Component {
   constructor(props)
@@ -22,13 +24,15 @@ class App extends Component {
     this.updateAnswer = this.updateAnswer.bind(this);
     this.deleteAnswer = this.deleteAnswer.bind(this);
     this.askQuestion = this.askQuestion.bind(this);
+    this.clearAll = this.clearAll.bind(this);
+
   }  
 
   componentDidMount()
   {
-    axios.get(`/api/getanswers}`).then(res =>
+    axios.get(`/api/getanswers`).then(res =>
     {
-      //console.log(res.data);
+      console.log(res.data);
       this.setState({ responses: res.data });
     });
   }
@@ -37,7 +41,7 @@ class App extends Component {
   {
     axios.post(`/api/getanswers`, {text}).then(res =>
     {
-      this.setState({ response: res.data });
+      this.setState({ responses: res.data });
     });
   }
 
@@ -57,42 +61,63 @@ class App extends Component {
     });
   }
  
-  askQuestion(text)
+  askQuestion()
   {
       axios.get(`/api/response`).then(res =>
       {
           this.setState({ response: res.data });
       });
   } 
-  
+ 
+  clearAll()
+  {
+    axios.delete(`/api/clearall`).then(res =>
+    {
+        this.setState({ responses: res.data });
+    });
+  }
+  showAll()
+  {
+    axios.delete(`/api/getanswers`).then(res => 
+    {
+      this.setState({ responses: res.data })
+    });
+  }
+
+
   render() 
   {
-    //const { responses } = this.state;
+    const { responses } = this.state;
 
     return (
       <div className="App_parent">
-        <section className="Title_parent">
-          <img src="https://papersource.scene7.com/is/image/PaperSource/10003102?resMode=sharp&id=3N-qP0&fmt=jpg&fit=constrain,1&wid=380&hei=380" alt="8ball"/>
-          <h1 className="Title">Magic 8 Ball</h1>
-        </section>
+        <Header />
         <section className="Question_display_parent">
           <div className="Question_display">  
+            {/* {console.log(this.state.responses)} */}
             <Question askQuestionFn={this.askQuestion}
-              text={this.state.response} />
+              displayResponse={this.state.response} />
             
 
           </div>
         </section>
+        <section className="Display_list">
+          {/* <button>Show All Responses</button>
+          <DisplayResponses askforResponses={responses}/> */}
+        </section>
           
-          <br/>
-          <section className="Answers_display_parent">
-            <div className="Answers_list">
-              {/* <Responses /> */}
-            </div>
-            <div className="Mod_buttons">
-              
-            </div>
-          </section>
+        <br/>
+        <section className="Answers_display_parent">
+          <div className="Answers_list">
+            <button onClick={this.Showall}>Show all responses</button>
+            <Responses clearAllFn={this.clearAll}
+              list={responses}
+              />
+          </div>
+          <div className="Mod_buttons">
+            
+          </div>
+        </section>
       </div>
     );
   }

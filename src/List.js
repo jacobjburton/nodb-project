@@ -1,10 +1,9 @@
 import React from 'react';
-import './App.css';
 
 
-function DisplayResponses(props)
+function List(props)
 {
-    let listDisplay = props.show.map((e,i) =>
+    let listOfAnswers = props.askforResponses.map((e,i) =>
     {
         return (
             <div className="Response_list_parent"> 
@@ -19,19 +18,4 @@ function DisplayResponses(props)
             </div>
         );
     });
-
-    return (
-        <div>
-            {listDisplay};
-        </div> 
-    );   
-
-
-    // return (
-    //     <div>
-    //         <button></button>
-    //         <List />
-    //     </div>
-    // );       
 }
-export default DisplayResponses;

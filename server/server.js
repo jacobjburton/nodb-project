@@ -8,7 +8,7 @@ const app = express();
 
 // top level middleware
 app.use(bodyParser.json());
-//app.use(express.static(_dirname = "/../build"));
+app.use(express.static(_dirname = "/../build"));
 
 
 

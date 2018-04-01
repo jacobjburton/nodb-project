@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 //import DisplayResponses from './DisplayResponses.js';
 
 class Responses extends Component
@@ -10,76 +10,69 @@ class Responses extends Component
 
         this.state =
         {
-           answersToDisplay: [], 
+           //displayAllResponses:  [],
+           //listOfAnswers: []
            
         };
 
-        this.askForAnswers = this.askForAnswers.bind(this);
-        this.clearAllAnswers = this.clearAllAnswers.bind(this);
-        // this.deleteAnswer = this.deleteAnswer.bind(this);
+        this.showAll = this.showAll.bind(this);
+        this.clearAll = this.clearAll.bind(this);
+       // this.askForResponses = this.askForResponses.bind(this);
     }
-    // componentDidMount()
-    // {
-    //     axios.get(`/api/getanswers}`).then(res =>
-    //     {
-    //     //console.log(res.data);
-    //     this.setState({ answersToDisplay: res.data });
-    //     });
-    // }
-    
-    // askForAnswers()
+
+    // showAll()
     // {   
-    //     axios.get(`/api/getanswers`).then(res =>
-    //     {
-    //    //console.log(res.data);
-    //     this.setState({ answersToDisplay: res.data });
-    //     });
+    //     console.log('hi');
+    //     this.setState({ displayAllResponses: this.props.responseList });
+    //     console.log(this.state.displayAllResponses)
     // }
 
-    // clearAllAnswers()
-    // {
-    //     axios.delete(`/api/clearall`).then(res =>
-    //     {
-    //         this.setState({ answersToDisplay: res.data });
-    //     });
-    // }
+    clearAll()
+    {
+        this.props.clearAllFn();
+    }
 
-    // deleteAnswer(id)
-    // {
-    //   axios.delete(`/api/getanswers?id=${id}`).then(res =>
-    //   {
-    //     this.setState({ answers: res.data });
-    //   });
-    // }
-
-
+    showAll()
+    {   
+        this.props.showAllFn();
+        
+      
+        // return (
+        //     <DisplayResponses show={this.props.list}/>
+        // );
+    }
 
     render()
     {
-        let listOfAnswers = this.state.answersToDisplay.map((e,i) =>
+        // const { listOfAnswers } = this.props;      
+        let listDisplay = this.props.list.map((e,i) =>
         {
             return (
-                <div className="Response_list_parent">        
+                <div className="Response_list_parent"> 
+                        
                     <div key={i} className="Response_list">
                         <button 
+                            key={e+i}
                             className="Edit_buttons">Edit</button>
                         {"#" + e.id + " " + e.answer}
-                        <button 
-                            className="Delete_buttons"
-                            // onClick={this.deleteAnswer}
-                        >Delete</button>
+                        <button key={i+e} className="Delete_buttons">Delete</button>
                     </div>
                 </div>
             );
         });
         return (
             <div>
-                <button onClick={this.askForAnswers}>Show all responses</button>
+                {console.log(this.props.list)}
+           
                 <br/>
-                {listOfAnswers}
-                {/* <DisplayResponses theseAnswers={this.state.answersToDisplay}/> */}
+                {listDisplay}
+                {/* <DisplayResponses askForResponses={listOfAnswers}/> */}
+
+                {/* <p>{this.props.responseList}</p> */}
+                {/* {listOfAnswers} */}
+                
                 <br/>
-                <button onClick={this.clearAllAnswers}>Clear all responses</button>
+                <button onClick={this.clearAll}>Clear all responses</button>
             </div>
         );
     }

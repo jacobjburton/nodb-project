@@ -11,24 +11,13 @@ class Question extends Component
         this.state =
         {
             question: "",
-           // response: '',
-            //questionToDisplay: ""
+            questionToDisplay: ""
         };
         
         this.askQuestion = this.askQuestion.bind(this);
         this.inputValue = this.inputValue.bind(this);
-       // this.askQuestion = this.askQuestion.bind(this);
-
         
     }
-
-    // askQuestion(text)
-    // {
-    //     axios.get(`/api/response`).then(res =>
-    //     {
-    //         this.setState({ response: res.data });
-    //     });
-    // }
 
     inputValue(text)
     {
@@ -40,8 +29,12 @@ class Question extends Component
     askQuestion()
     {
         
-        this.props.askQuestionFn(this.state.question);
-        this.setState({ question: "" });
+        this.props.askQuestionFn();
+        this.setState(
+        {
+            questionToDisplay: this.state.question,
+            question: "" 
+        });
     }
    
 
@@ -57,8 +50,8 @@ class Question extends Component
                 onChange={(e) => this.inputValue(e.target.value)}
             />
             <button onClick={this.askQuestion}>Ask!</button>
-            <DisplayQuestion q={this.props.displayQuestion}/>
-            <p>{this.props.response}</p>
+            <DisplayQuestion q={this.state.questionToDisplay}/>
+            <p>{this.props.displayResponse}</p>
             {/* <p>{console.log(this.state.question)}</p> */}
             <section className="Answer_display">
                 {/* {this.askQuestion()} */}
