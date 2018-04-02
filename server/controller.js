@@ -44,17 +44,18 @@ var answers =
     }
 ];
 
-
-let id = 1;
+// let index = answers.length+1;
+//let id = 1;
 
 module.exports = 
 {
     read: (req, res) => 
     {
-        res.status(200).send(answers)
+        res.status(200).send(answers);
     },
     response: (req, res) => 
     {
+        
         let newResponse = "";
         let idNumber = Math.floor(Math.random()*answers.length+1);
         //console.log(idNumber);
@@ -72,31 +73,51 @@ module.exports =
     },
     create: (req, res) =>
     {
+        // let index = answers.length+1;
+        let inputIndex = 1;
+        for (var i = 0; i<answers.length; i++)
+        {
+            if (answers[i].id !== inputIndex)
+            {    
+               inputIndex = answers[i-1].id + 1;
+               break;
+            }
+            else
+            {
+                inputIndex++;
+            }
+        }
+        //console.log(inputIndex);
         const { answer } = req.body;
         let response =
         {
-            id: id,
+            id: inputIndex,
             answer: answer
         };
-        answers.push(response);
-        id++;
+        answers.splice(i, 0, response);
+        
         res.status(200).send(answers);
     },
     update: (req, res) =>
     {
+        console.log(req.body);
+       // let id = 1
         let index = null;
-        answers.forEach((response, i) =>
+        let newAnswers = answers.slice();
+        newAnswers.forEach((answer, i) =>
         {
-            if(response.id === +req.params.id)
+            if(answer.id === +req.params.id)
             {
                 index = i;
             };
         });
-        answers[index] =
+        console.log(index);
+        newAnswers[index] =
         {
-            id: answers[index].id,
-            title: req.body.answer || answers[index].answer            
+            id: newAnswers[index].id,
+            answer: req.body.text.answer      
         };
+        answers = newAnswers.slice();
         res.status(200).send(answers);
     },
     delete: (req, res) =>
@@ -104,18 +125,19 @@ module.exports =
         let index = null;
         answers.forEach((response, i) =>
         {
-            if(response.id === +req.params.id)
+            if(+response.id === +req.params.id)
             {
                 index = i;
             };
         });
+        
         answers.splice(index, 1);
         res.status(200).send(answers);
     },
     clearAll: (req, res) =>
     {   
         id = 1;
-        let index = null;
+        //let index = 1;
         answers.length = 0;
         res.status(200).send(answers);
     }

@@ -5,9 +5,29 @@
   text-align: center;
 }
 
+/* header
+{
+  height: 10vh;
+  width: 100vw;
+} */
+/* .body
+{
+  height: 100%;
+  width: 100vw;
+  background-color: lightblue;
+} */
+
+/* footer
+{
+  position: fixed;
+  bottom: 0px;
+  height: 10vh;
+  width: 100vw;
+} */
+
 .Title_parent
 {
-  height: 20vh;
+  /* height: 20vh; */
   width: 100vw;
   background: green;
   display: flex;

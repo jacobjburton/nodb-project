@@ -61,8 +61,11 @@ class Question extends Component
                 onChange={(e) => this.inputValue(e.target.value)}
             />
             <button onClick={this.askClick}>Ask!</button>
+            <h3>Question:</h3>
             <DisplayQuestion q={this.state.questionToDisplay}/>
-            <p>{this.state.response}</p>
+            <h3>Response:</h3>
+            <DisplayQuestion q={this.state.response}/>
+            {/* <p>{this.state.response}</p> */}
             {/* <p>{console.log(this.state.question)}</p> */}
             <section className="Answer_display">
                 {/* {this.askQuestion()} */}
