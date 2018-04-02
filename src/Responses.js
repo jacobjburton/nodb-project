@@ -15,6 +15,7 @@ class Responses extends Component
             editId: '',
             editText: '',
             deleteId: '',
+
         };
 
         this.createAnswer = this.createAnswer.bind(this);
@@ -29,6 +30,7 @@ class Responses extends Component
         this.editIdValue = this.editIdValue.bind(this);
         this.editTextValue = this.editTextValue.bind(this);
         this.deleteIdValue = this.deleteIdValue.bind(this);
+        this.addQuote = this.addQuote.bind(this);
     }
     // componentDidMount()
     // {
@@ -147,6 +149,15 @@ class Responses extends Component
         this.setState({ deleteId: '' })
     }
 
+    addQuote()
+    {
+        axios.post(`/api/getquote`).then(res =>
+        {
+            this.setState({ answersToDisplay: res.data });
+        });
+        // this.askForAnswers();
+    }
+
     render()
     {
         let listOfAnswers = this.state.answersToDisplay.map((e,i) =>
@@ -175,7 +186,7 @@ class Responses extends Component
                 </div>
                 {/* <DisplayResponses theseAnswers={this.state.answersToDisplay}/> */}
                 <br/>
-                <button onClick={this.clearAllAnswers}>Clear All Responses</button>
+                <button onClick={this.clearAllAnswers}>Delete All Responses</button>
                 <br/>
                 <div className="New_response">
                     
@@ -188,6 +199,8 @@ class Responses extends Component
                         className="New_response_button"
                         onClick={this.newResponseClick}>
                     Add Response</button>
+                    <h3>Get a Random Quote to Add</h3>
+                    <button onClick={this.addQuote}>Get a quote</button>
                 </div>
                 <div className="Edit_boxes">
                     <h3>Edit Responses</h3>

@@ -8,7 +8,6 @@
 // {
 //     res.status(200).send(stuff);
 // });
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const controller = require('./controller.js');
@@ -18,6 +17,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static(_dirname = "/../build"));
 
+app.post(`/api/getquote`, controller.quote)
 app.get('/api/getanswers', controller.read);
 app.get('/api/response', controller.response);
 app.post('/api/getanswers', controller.create);

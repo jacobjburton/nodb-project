@@ -1,4 +1,4 @@
-//var answers = require("./answers.js");
+const externalUrl = 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1'
 const axios = require('axios');
 var answers =
 [ 
@@ -140,5 +140,37 @@ module.exports =
         //let index = 1;
         answers.length = 0;
         res.status(200).send(answers);
+    },
+    quote: (req, res) => {
+        let inputIndex = 1;
+        for (var i = 0; i<answers.length; i++)
+        {
+            if (answers[i].id !== inputIndex)
+            {    
+               inputIndex = answers[i-1].id + 1;
+               break;
+            }
+            else
+            {
+                inputIndex++;
+            }
+        }
+       // let id = answers.length + 1;
+        let newQuote = {};
+        axios.get(`${externalUrl}`).then(response =>
+        {   
+            console.log(response.data);
+            newQuote.id = inputIndex;
+            let content = response.data[0].content;
+            let startIndex = content.indexOf(">")
+            let endIndex = content.indexOf("<", startIndex)
+            //console.log(startIndex, endIndex);
+            newQuote.answer = content.slice(startIndex + 1, endIndex);
+            console.log(newQuote.id);
+            console.log(newQuote.answer);
+            // answers.push(newQuote);
+            answers.splice(i, 0, newQuote);
+            res.send(answers);
+        });
     }
 }

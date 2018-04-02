@@ -6,23 +6,20 @@ import Responses from './Responses.js';
 import Header from './Header.js';
 
 class App extends Component {
-  constructor(props)
-  {
-    super(props);
+  // constructor(props)
+  // {
+  //   super(props);
 
-    this.state = 
-    {
-      // input: '',
-      displayQuestion: "",
-      answers: [],
-      //response: "",
+  //   this.state = 
+  //   {
+  //     // input: '',
+  //     displayQuestion: "",
+  //     answers: [],
+  //     //response: "",
       
-    };
+  //   };
 
-   // this.updateAnswer = this.updateAnswer.bind(this);
-
-  
-  }  
+  // }  
 
   render() 
   {
