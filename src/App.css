@@ -26,13 +26,10 @@
   color: white;
 }
 
-/* footer
+.Response_list_parent
 {
-  position: fixed;
-  bottom: 0px;
-  height: 10vh;
-  width: 100vw;
-} */
+  text-shadow: 5px 5px 10px black;
+}
 
 .Title_parent
 {
@@ -46,13 +43,20 @@
 {
   height: 100%;
   width: 15vw;
+  border-radius: 0px 10px 10px 0px;
+}
+
+h3
+{
+  text-shadow: 5px 5px 5px black;
 }
 
 .Title
 {
   margin: auto;
   /* position: relative; */
-  font-size: 80px;
+  font-size: 150px;
+  text-shadow: 5px 5px 5px white;
 }
 
 .Question_input
@@ -103,10 +107,12 @@ input
   margin: 20px;
   width: 250px;
   border-radius: 8px;
+  box-shadow: 5px 5px 5px black;
 }
 
 button
 {
   margin: 20px;
   border-radius: 8px;
+  box-shadow: 5px 5px 5px black;
 }

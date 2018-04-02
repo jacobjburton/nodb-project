@@ -164,7 +164,9 @@ module.exports =
             newQuote.id = inputIndex;
             //console.log(decodeUriComponent("Why expect spec work from a graphic designer when you don&#8217;t expect%20the same from a dentist?"))
             let newString = response.data[0].content;
-            newString = newString.replace(/&#8217;/, "'");
+            //console.log(newString)
+            newString = newString.replace(/&#8217;/g, "'");
+            //console.log(newString);
             let startIndex = newString.indexOf(">")
             let endIndex = newString.indexOf("<", startIndex)
 
