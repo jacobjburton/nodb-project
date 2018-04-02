@@ -1,5 +1,6 @@
 const externalUrl = 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1'
 const axios = require('axios');
+const decodeUriComponent = require('decode-uri-component');
 var answers =
 [ 
     {
@@ -159,15 +160,17 @@ module.exports =
         let newQuote = {};
         axios.get(`${externalUrl}`).then(response =>
         {   
-            console.log(response.data);
+            //console.log(response.data);
             newQuote.id = inputIndex;
-            let content = response.data[0].content;
-            let startIndex = content.indexOf(">")
-            let endIndex = content.indexOf("<", startIndex)
+            //console.log(decodeUriComponent("Why expect spec work from a graphic designer when you don&#8217;t expect%20the same from a dentist?"))
+            let newString = response.data[0].content;
+            newString = newString.replace(/&#8217;/, "'");
+            let startIndex = newString.indexOf(">")
+            let endIndex = newString.indexOf("<", startIndex)
+
             //console.log(startIndex, endIndex);
-            newQuote.answer = content.slice(startIndex + 1, endIndex);
-            console.log(newQuote.id);
-            console.log(newQuote.answer);
+            newQuote.answer = newString.slice(startIndex + 1, endIndex);
+            //console.log(newQuote.answer);
             // answers.push(newQuote);
             answers.splice(i, 0, newQuote);
             res.send(answers);

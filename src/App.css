@@ -4,18 +4,27 @@
   width: 100vw;
   text-align: center;
 }
-
-/* header
+.fixTitle
 {
-  height: 10vh;
-  width: 100vw;
-} */
-/* .body
+  min-height: 10vh;
+  min-width: 15vw;
+  background-color: darkgray;
+}
+.Title
 {
-  height: 100%;
-  width: 100vw;
-  background-color: lightblue;
-} */
+  font-family: 'Chicle', cursive;
+}
+.body
+{
+  /* height: 100%;
+  width: 100vw; */
+  flex-grow: 1;
+  background-image: url('./images/question-marks.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
 
 /* footer
 {
@@ -27,21 +36,22 @@
 
 .Title_parent
 {
-  /* height: 20vh; */
+  height: 20vh;
   width: 100vw;
-  background: green;
+  background: darkgray;
   display: flex;
 }
 
 .Title_parent img
 {
-  height: 20vh;
-  width: 20vw;
+  height: 100%;
+  width: 15vw;
 }
 
 .Title
 {
   margin: auto;
+  /* position: relative; */
   font-size: 80px;
 }
 
@@ -56,10 +66,10 @@
   justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+} */
 
 .Answers_List
 {
@@ -88,5 +98,15 @@
   float: right;
 }
 
+input
+{
+  margin: 20px;
+  width: 250px;
+  border-radius: 8px;
+}
 
-
+button
+{
+  margin: 20px;
+  border-radius: 8px;
+}

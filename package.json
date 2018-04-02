@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
+    "decode-uri-component": "^0.2.0",
     "express": "^4.16.3",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",

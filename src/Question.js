@@ -57,7 +57,7 @@ class Question extends Component
             <input
                 
                 value = {this.state.question} 
-                placeholder="Ask a question!"
+                placeholder="  Ask a question!"
                 onChange={(e) => this.inputValue(e.target.value)}
             />
             <button onClick={this.askClick}>Ask!</button>

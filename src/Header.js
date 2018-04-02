@@ -6,8 +6,9 @@ function Header(props)
         <div>
             <section className="Title_parent">
                 <img src={require('./images/8ball.jpg')} alt="8ball"/>
+
                 <h1 className="Title">Magic 8 Ball</h1>
-                
+                <div className="fixTitle"></div>
         </section>
         </div>
     );

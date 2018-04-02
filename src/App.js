@@ -34,7 +34,7 @@ class App extends Component {
             <div className="Question_display">  
               <Question />
             </div>
-          </section>          
+          </section>
           <br/>
           <section className="Answers_display_parent">
             <div className="Answers_list">

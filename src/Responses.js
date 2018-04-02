@@ -192,7 +192,7 @@ class Responses extends Component
                     
                     <h3>Add a New Response</h3>
                     <input 
-                        placeholder="Enter a new response"
+                        placeholder="  Enter a new response"
                         value={this.state.newResponse}
                         onChange={(e) => this.responseValue(e.target.value)}/>
                     <button 
@@ -205,20 +205,21 @@ class Responses extends Component
                 <div className="Edit_boxes">
                     <h3>Edit Responses</h3>
                     <input
+                        type="num"
                         value={this.state.editId}
                         onChange={(e) => this.editIdValue(e.target.value)} 
-                        placeholder="What number will you edit?"/>
+                        placeholder="  What number will you edit?"/>
                     <input
                         value={this.state.editText}
                         onChange={(e) => this.editTextValue(e.target.value)}
-                        placeholder="New response:"/>
+                        placeholder="  New response:"/>
                     <button onClick={this.editClick}>Edit</button>
                 </div>
                 <div className="Delete_boxes">
                     <h3>Delete A Response</h3>
                     <input 
                         value={this.state.deleteId}
-                        placeholder="What number will you delete?"
+                        placeholder="  What number will you delete?"
                         onChange={(e) => this.deleteIdValue(e.target.value)}/>
                     <button onClick={this.deleteClick}>Delete</button>
                 </div>
